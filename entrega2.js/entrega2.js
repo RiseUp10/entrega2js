@@ -1,114 +1,64 @@
-supermercados = [
-  {
-    dia: 'viernes',
-    ubicacion: 'CABA', 
-    adheridos:  {
-        carrefour:  {
-            id: 1,
-            tc: 0.10,
-            td: 0.15,
-            mp: 0.20
-        },
-        changomas:  {
-            id: 2,
-            tc: 0.20,
-            td: 0.20,
-            mp: 0.25
-        } 
-        coto : {
-            id: 2,
-            tc: 0.15,
-            td: 0.20,
-            mp: 0.15
-        },
-        jumbo: 0.15,
-        }
-  }]
+supermercados=  [
+    {
+      nombre: 'Carrefour',
+      id: 1,
+      tc: 0.05,
+      td: 0.15,
+      mp: 0.20
+		},
+		{
+      nombre: 'Changomas',
+      id: 2,
+      tc: 0.20,
+      td: 0.10,
+      mp: 0.25
+		},
+		{
+      nombre: 'Coto', 
+      id: 3,
+      tc: 0.15,
+      td: 0.20,
+      mp: 0.15
+		},
+		{
+      nombre: 'Jumbo',
+      id: 4,
+      tc: 0.1,
+      td: 0.05,
+      mp: 0.10
+		}
+];
 
-//Constructor
-class Usuarios	{
-	constructor(nombre, formaDePago1, formaDePago2, formaDePago3){
-	this.nombre = nombre.toUpperCase();
-	this.formaDePago1 = formaDePago1;
-	this.formaDePago2 = formaDePago1;
-	this.formaDePago3 = formaDePago1;
+function buscarDescuentos(mediosDePago)  {
+  if(mediosDePago == '1') {
+    supermercados.sort((a,b) => b.tc - a.tc);
+    alert('El descuento en pesos que tenés pagando con tarjeta de crédito es $'+(producto*[supermercados[0].tc]));
+    }
+    else if(mediosDePago == '2')  {
+      supermercados.sort((a,b) => b.td - a.td);
+      alert('El descuento en pesos que tenés pagando con tarjeta de crédito es $'+(producto*[supermercados[0].td]));
+    }
+    else  {
+      supermercados.sort((a,b) => b.mp - a.mp);
+      alert('El descuento en pesos que tenés pagando con tarjeta de crédito es $'+(producto*[supermercados[0].mp]));
+    }
+      console.table(supermercados);
+      alert(usuario+', el supermercado que más te conviene para comprar con tu medio de pago es '+[supermercados[0].nombre]);
 }
-//Metodo a definir.
-}
 
-let consulta = parseInt(prompt('Contame cuántos medios de pago tenés para poder hacer bien mi trabajo.\n1,\n2,\n3.'));
+let usuario = prompt('Bienvenido al buscador de descuentos para supermercados.\n\nDecime tu nombre');
 
-let formaDePago =[];
+let producto = parseInt(prompt('Qué precio tiene el producto que querés comprar?'));
 
-if((consulta == 1) || (consulta == 2) || (consulta == 3))	{
-let nombre = prompt('Bienvenido al sistema descuentero!!\n\nDecime cuál es tu nombre.');
-	
-	for(i = 0; i<consulta; i++)	{
-		
-		if(i == 0)	{
-				let formaDePago1 = formaDePago;
-				} else if(i == 1)	{
-				let formaDePago2 = formaDePago;
-				}	else{
-				let	formaDePago3 = formaDePago;
-				}
-				const usuario1 = new Usuarios('nombre','formaDePago1','formaDePago2','formaDePago3');
-		
-		let opcionesDeDescuento = prompt('Qué tipo de medio de pago es?\n1 - Tarjeta de crédito.\n2 - Billetera electrónica.\n3 - Club La Nación');
-			switch(opcionesDeDescuento)	{
+let mediosDePago = prompt ('Contame qué medio de pago tenés (0 para salir)\n1 - Tarjeta de crédito.\n2 - Tarjeta de débito.\n3 - MercadoPago.');
 
-				case '1':
-					formaDePago = prompt('¿Cuál TC tenés?\n1 - Visa.\n2 - Mastercard.');
-					if(formaDePago == '1')	{
-						formaDePago = 'Visa';
-					}else{
-						formaDePago = 'Mastercard';
-					}
-					break;
-
-				case '2':
-					formaDePago = prompt('Cuál eWallet tenés?\n1 - MercadoPago.\n2 - MODO.');
-					if(formaDePago == '1')	{
-						formaDePago = 'MercadoPago';
-					}else{
-						formaDePago = 'MODO'; 
-					}
-					break;
-
-				case '3':
-						formaDePago = 'Club La Nación';
-					break;
-
-				default:
-					alert('Opción mal ingresada');
-					break;
-				}
-			console.log(usuario1);
-			}
-			}else{
-				alert('No entendiste el concepto. Se permite de 1 a 3 medios de pago');
-			};
-;
-
-
-				
-
-
-
-
-
-/* const intentoDeSumarseAlConstructor = {
-	nombre: 'Mepesa Elsogan',
-	formaDePago1: 'TCAmexHSBC',
-	formaDePago2: 'TDVisaHSBC',
-	formaDePago3: 'TCMasterBBVA',
-} */
-
-
-
-
-/* const persona2 = new Persona('Florencia Casaco','TDMaestroBancoProvincia','CuentaDNI','TCMastercardBancoProvincia');	
-const persona3 = new Persona('Martin Melapiso','Bimo','Club365'); */
-
-/* const persona4 = new Persona(intentoDeSumarseAlConstructor); //Asi no se puede hacer.
- */
+while(mediosDePago != '0') {
+  if((mediosDePago == '1') || (mediosDePago == '2') || (mediosDePago == '3')) {
+    buscarDescuentos(mediosDePago);
+    break;
+  }
+  else{
+    alert('Ingresaste una opción equivocada.'); 
+  }
+    mediosDePago = prompt ('Contame qué medio de pago tenés (0 para salir)\n1 - Tarjeta de crédito.\n2 - Tarjeta de débito.\n3 - MercadoPago.');
+};
